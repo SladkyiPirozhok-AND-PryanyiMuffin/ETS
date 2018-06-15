@@ -83,7 +83,8 @@ Common presenceOfClass = new Common(driver);
         waitingForVisibility.isElementVisible("2").click();
 
         //Создание маршрута
-        presenceOfID.waitingForID("create-route").click();
+
+        waitingForClick.isElementClickable("create-route").click();
         //Название маршрута
         waitingForClick.isElementClickable("route-name");
         waitingForClick.isElementClickable("select-from-odh");

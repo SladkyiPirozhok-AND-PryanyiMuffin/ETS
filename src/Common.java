@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.util.logging.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,6 +34,18 @@ public class Common {
 
     }
 
+    public WebElement findElement(By locator, int timeOut) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOut);
+        WebElement webElement = null;
+
+        try {
+            webElement = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            //.debug("Find element: " + locator + " => true");
+        } catch (Exception ex) {
+           // LOG.warn("Web element not found: " + locator);
+        }
+        return webElement;
+    }
     public void closeNotification(String notificationsClass) {
         if (driver.findElement(By.className(notificationsClass)).isDisplayed()) {
             driver.findElement(By.className("notification-dismiss")).click();
@@ -55,8 +67,12 @@ public class Common {
     //Ждать, когда элемент станет "кликабельным"
     public WebElement isElementClickable(String elementID) {
         WebDriverWait wait = new WebDriverWait(driver, 180);
-        WebElement IsElementClickable = wait.until(ExpectedConditions.elementToBeClickable(By.id(elementID)));
-        return IsElementClickable;
+        WebElement isElementClickable = wait.until(ExpectedConditions.elementToBeClickable(By.id(elementID)));
+        WebElement newElem = findElement(By.id(elementID), 180);
+        if(isElementClickable == newElem)
+            return isElementClickable;
+        else
+            return newElem;
     }
 
     public WebElement isElementClickableByXpath(String putHereXpath) {

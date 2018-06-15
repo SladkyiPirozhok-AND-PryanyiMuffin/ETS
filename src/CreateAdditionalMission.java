@@ -57,13 +57,13 @@ public class CreateAdditionalMission {
 
         //Задание - Элемент
 
-        WaitingForClick.isElementClickable("react-select-52--value").click();
+        WaitingForClick.isElementClickable("react-select-52--value");
         driver.findElement(By.id("react-select-52--value")).click();
 
         WaitingForVisibility.isElementVisible("101").click();
 
         //Создание маршрута
-
+        waitingForClick.isElementClickable("create-route");
         presenceOfID.waitingForID("create-route").click();
         //Название маршрута
         presenceOfClass.waitingForClass("ol-unselectable");

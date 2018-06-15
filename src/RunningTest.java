@@ -103,7 +103,7 @@ public class RunningTest {
             System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
 
             for (LogEntry logEntry : logEntries) {
-                System.out.println("Находимся в " + "добавить переменную названия форм");
+               // System.out.println("Находимся в " + "добавить переменную названия форм");
                 System.out.println("__________________________________________________________");
                 if (logEntry.getMessage().toLowerCase().contains("error")) {
                     System.out.println("ОШИБКА: " + logEntry.getMessage());
