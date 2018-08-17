@@ -12,7 +12,7 @@ import java.util.List;
  * Created by User on 16.05.2018.
  */
 public class CreateAdditionalMission {
-  //  private ChromeDriver driver;
+    //  private ChromeDriver driver;
 
     public void AddMission1(ChromeDriver driver) throws Exception {
         Common presenceOfID = new Common(driver);
@@ -38,8 +38,8 @@ public class CreateAdditionalMission {
         presenceOfID.waitingForID("create-mission").click();
         //Задание - Технологическая операция
 
-        presenceOfID.waitingForID("react-select-50--value").click();
-        presenceOfID.waitingForID("100").click();
+        presenceOfID.waitingForID("react-select-46--value").click();
+        presenceOfID.waitingForID("119").click();
 
 
         // //Наличие текста: "Дата не должна выходить за пределы путевого листа"
@@ -57,13 +57,13 @@ public class CreateAdditionalMission {
 
         //Задание - Элемент
 
-        WaitingForClick.isElementClickable("react-select-52--value");
-        driver.findElement(By.id("react-select-52--value")).click();
+        WaitingForClick.isElementClickable("react-select-48--value");
+        driver.findElement(By.id("react-select-48--value")).click();
 
-        WaitingForVisibility.isElementVisible("101").click();
+        WaitingForVisibility.isElementVisible("102").click();
 
         //Создание маршрута
-        waitingForClick.isElementClickable("create-route");
+      //  waitingForClick.isElementClickable("create-route");
         presenceOfID.waitingForID("create-route").click();
         //Название маршрута
         presenceOfClass.waitingForClass("ol-unselectable");
@@ -71,9 +71,11 @@ public class CreateAdditionalMission {
 
         presenceOfID.waitingForID("route-name").click();
         presenceOfID.waitingForID("route-name").sendKeys("Маршрут №2");
-        //Список выбранных ОДХ
-        presenceOfID.waitingForID("react-select-60--value").click();
-        presenceOfID.waitingForID("462688").click();
+        //Список выбранных ДТ
+        presenceOfID.waitingForID("react-select-56--value").click();
+        presenceOfID.waitingForID("375814").click();
+        presenceOfID.waitingForID("react-select-56--value").click();
+        presenceOfID.waitingForID("188657").click();
         //Нажатие кнопки "Создать".
         presenceOfID.waitingForID("route-submit").click();
         //Отображается уведомление: "Данные успешно сохранены".

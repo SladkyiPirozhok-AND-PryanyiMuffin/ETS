@@ -26,6 +26,7 @@ public class DeleteAdditionalMission {
 
         PresenceOfID.waitingForID("open-update-form").click();
         driver.findElement(By.className("Select-value-icon")).click();
+        PresenceOfID.waitingForID("waybill-submit").click();
 
     }
 }

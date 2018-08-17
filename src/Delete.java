@@ -6,8 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Delete {
     private ChromeDriver driver;
-    public void DeleteWaybill (ChromeDriver driver) throws Exception {
 
+    public void DeleteWaybill(ChromeDriver driver) throws Exception {
 
 
         Thread.sleep(11000);
@@ -16,4 +16,5 @@ public class Delete {
 
         driver.findElement(By.id("remove-element")).click();
         driver.findElement(By.xpath("(//button[@type='button'])[19]")).click();
-    }}
+    }
+}

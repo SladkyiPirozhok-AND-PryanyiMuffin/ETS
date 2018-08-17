@@ -15,11 +15,11 @@ public class Filter {
         Common common = new Common(driver);
         Common PresenceOfID = common;
         Common waitingForClick = new Common(driver);
-        waitingForClick.isElementClickable("show-options-filter");
+        //  waitingForClick.isElementClickable("show-options-filter");
 
-Thread.sleep(800);
-       PresenceOfID.waitingForID("show-options-filter").click();
-        PresenceOfID.waitingForID("rw_5_input").sendKeys(planDepartureDate);
+
+        PresenceOfID.waitingForID("show-options-filter").click();
+        PresenceOfID.waitingForID("rw_3_input").sendKeys(planDepartureDate);
         //driver.findElement(By.id("rw_5_input")).sendKeys(planDepartureDate);
         PresenceOfID.waitingForID("apply-filter").click();
     }

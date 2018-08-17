@@ -28,6 +28,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+
 
 public class RunningTest {
 
@@ -48,26 +50,21 @@ public class RunningTest {
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-        //driver = new ChromeDriver(caps);
 
-//        File file = new File("C:/eidriver/IEDriverServer.exe");
-//        System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-//        WebDriver driver = new InternetExplorerDriver();
-//
-//        System.setProperty("webdriver.chrome.driver", "C:\\eidriver\\IEDriverServer.exe");
-//        driver = new InternetExplorerDriver();
-//        browserName = "IEDriver";
-//        browserVersion = "9";
-//        System.out.println("Automated test run. We’re running on " + browserName + " " + browserVersion);
-//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 
     @Test
     @Parameters
     public void WaybillCD() throws Exception {
+
+
+
         Login Enter = new Login();
-        Enter.User(driver, "", "");
+        Enter.User(driver, "lublino_md", "ets123");
+
+
+
         CreateWaybill FromJournal = new CreateWaybill();
         String createWaybillDate;
 
@@ -85,8 +82,8 @@ public class RunningTest {
         DeleteAdditionalMission deleteOneMoreMission = new DeleteAdditionalMission();
         deleteOneMoreMission.deleteMission1(driver);
         analyzeLog();
-//        Delete AfterCreation = new Delete();
-//        AfterCreation.DeleteWaybill(driver);
+        Delete AfterCreation = new Delete();
+        AfterCreation.DeleteWaybill(driver);
         analyzeLog();
     }
     @Test

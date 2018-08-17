@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.logging.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,6 +31,7 @@ public class Common {
         System.out.println("Automated test run. We’re running on " + browserName + " " + browserVersion);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
+
     }
 
     public WebElement findElement(By locator, int timeOut) {
@@ -52,6 +52,8 @@ public class Common {
         }
     }
 
+
+
     //Ждать до отображения элемента по ID
     public WebElement waitingForID(String elementID) {
         WebDriverWait wait = new WebDriverWait(driver, 90);
@@ -66,10 +68,28 @@ public class Common {
 
     //Ждать, когда элемент станет "кликабельным"
     public WebElement isElementClickable(String elementID) {
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElementById(elementID)).perform();
         WebDriverWait wait = new WebDriverWait(driver, 180);
         WebElement isElementClickable = wait.until(ExpectedConditions.elementToBeClickable(By.id(elementID)));
         WebElement newElem = findElement(By.id(elementID), 180);
         if(isElementClickable == newElem)
+            return isElementClickable;
+        else
+            return newElem;
+    }
+
+    //Ждать, когда элемент исчезнет
+    public WebElement elementIsNotVisible(String elementID) {
+        WebDriverWait wait = new WebDriverWait(driver, 500);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElementById(elementID)).perform();
+        WebElement isElementClickable = wait.until(ExpectedConditions.elementToBeClickable(By.id(elementID)));
+        WebElement newElem = findElement(By.id(elementID), 500);
+
+        if(isElementClickable == newElem)
+
             return isElementClickable;
         else
             return newElem;
@@ -92,6 +112,11 @@ public class Common {
         WebDriverWait wait = new WebDriverWait(driver, 90);
         WebElement IsElementVisible = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id(elementID))));
         return IsElementVisible;
+    }
+
+    public void implicitWait (String elementID) {
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        driver.findElement(By.id(elementID));
     }
 
     //Наличие класса
@@ -194,7 +219,12 @@ public class Common {
         return IsElementAppear;
     }
 
-//The below code will wait until the overlay disppears
+    //
+    public void textToDisappear (String elementID, String textToBePresent) {
+        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        WebElement element = driver.findElement(By.id(elementID));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, textToBePresent)));
+    }
 
     public void waitUntilTheOverlayDisppears(String elementID) {
         By loadingImage = By.id(elementID);//loading image ID
