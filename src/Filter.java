@@ -14,25 +14,24 @@ public class Filter {
         //this.driver = driver;
         Common common = new Common(driver);
         Common PresenceOfID = common;
-        Common waitingForClick = new Common(driver);
-        //  waitingForClick.isElementClickable("show-options-filter");
 
-
+Thread.sleep(9000);
         PresenceOfID.waitingForID("show-options-filter").click();
-        PresenceOfID.waitingForID("rw_3_input").sendKeys(planDepartureDate);
-        //driver.findElement(By.id("rw_5_input")).sendKeys(planDepartureDate);
+        PresenceOfID.waitingForID("waybill-plan_departure_date-beg-value_input").click();
+        PresenceOfID.waitingForID("waybill-plan_departure_date-beg-value_input").sendKeys(planDepartureDate);
         PresenceOfID.waitingForID("apply-filter").click();
     }
 
-    //Надо подумать как ввести рег.номер ТС
-//    public void ByCarNumber(ChromeDriver driver, String tmp) throws Exception {
-//        this.driver = driver;
-//        Common common = new Common(driver);
-//        Thread.sleep(7000);
-//        Common PresenceOfID = common;
-//        driver.findElement(By.id("show-options-filter")).isEnabled();
-//        PresenceOfID.waitingForID("show-options-filter").click();
-//        driver.findElement(By.id("react-select-8--value")).sendKeys(tmp);
-//        PresenceOfID.waitingForID("apply-filter").click();
-//    }
+//ФИльтр в реестре сотрудников по к
+    public void employeeSurname(ChromeDriver driver, String employeeSurname) throws Exception {
+        //this.driver = driver;
+        Common common = new Common(driver);
+        Common PresenceOfID = common;
+
+
+        PresenceOfID.waitingForID("show-options-filter").click();
+        PresenceOfID.waitingForID("rw_3_input").sendKeys(employeeSurname);
+        PresenceOfID.waitingForID("apply-filter").click();
+    }
+
 }

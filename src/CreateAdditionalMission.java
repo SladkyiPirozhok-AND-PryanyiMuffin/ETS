@@ -14,70 +14,67 @@ import java.util.List;
 public class CreateAdditionalMission {
     //  private ChromeDriver driver;
 
-    public void AddMission1(ChromeDriver driver) throws Exception {
-        Common presenceOfID = new Common(driver);
-        Common WaitingForClick = new Common(driver);
-        Common WaitingForVisibility = new Common(driver);
-        Common waitingForClick = new Common(driver);
-        Common presenceOfClass = new Common(driver);
+    public void addMission1(ChromeDriver driver) throws Exception {
+        Common utils = new Common(driver);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.HOUR, +1);
         Date oneHourAhead = cal.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         String waybillsPlannedStartDate = sdf.format(oneHourAhead);
-        Common WaitingForClickByXpath = new Common(driver);
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,450)", "");
+        //Нажать "Применить" в фильтре
+        utils.isElementClickable("apply-filter").click();
         //Хватает первый элемент
-        presenceOfID.waitingForID("checkbox-id").click();
+        utils.waitingForID("checkbox-id").click();
         //Форма "Активный путевой лист"
-
-        presenceOfID.waitingForID("open-update-form").click();
-
-        presenceOfID.waitingForID("create-mission").click();
+        Thread.sleep(2000);
+        utils.waitingForID("open-update-form").click();
+        utils.waitingForID("create-mission").click();
         //Задание - Технологическая операция
-
-        presenceOfID.waitingForID("react-select-46--value").click();
-        presenceOfID.waitingForID("119").click();
+        Thread.sleep(2000);
+        utils.waitingForID("react-select-47--value").click();
+        utils.waitingForID("119").click(); //Сопровождение дорожно-ремонтных работ
 
 
         // //Наличие текста: "Дата не должна выходить за пределы путевого листа"
+        Thread.sleep(2000);
         Common OutOfWaybillsSchedule = new Common(driver);
         List<String> allErrors = OutOfWaybillsSchedule.getAllErrorsTextListed();
         System.out.println(allErrors);
 
         if (!allErrors.contains(" Дата не должна выходить за пределы путевого листа")) {
-            presenceOfID.waitingForID("date-start_input").click();
+            utils.waitingForID("date-start_input").click();
 
-            presenceOfID.waitingForID("date-start_input").clear();
-            presenceOfID.waitingForID("date-start_input").sendKeys(waybillsPlannedStartDate);
+            utils.waitingForID("date-start_input").clear();
+            utils.waitingForID("date-start_input").sendKeys(waybillsPlannedStartDate);
         } else
             System.out.println(waybillsPlannedStartDate);
 
         //Задание - Элемент
 
-        WaitingForClick.isElementClickable("react-select-48--value");
+        utils.isElementClickable("react-select-48--value");
         driver.findElement(By.id("react-select-48--value")).click();
 
-        WaitingForVisibility.isElementVisible("102").click();
+        utils.isElementVisible("102").click();
 
         //Создание маршрута
-      //  waitingForClick.isElementClickable("create-route");
-        presenceOfID.waitingForID("create-route").click();
+        //  waitingForClick.isElementClickable("create-route");
+        utils.waitingForID("create-route").click();
         //Название маршрута
-        presenceOfClass.waitingForClass("ol-unselectable");
-        waitingForClick.isElementClickable("route-name");
+        utils.waitingForClass("ol-unselectable");
+        utils.isElementClickable("route-name");
 
-        presenceOfID.waitingForID("route-name").click();
-        presenceOfID.waitingForID("route-name").sendKeys("Маршрут №2");
+        utils.waitingForID("route-name").click();
+        utils.waitingForID("route-name").sendKeys("Маршрут №2");
         //Список выбранных ДТ
-        presenceOfID.waitingForID("react-select-56--value").click();
-        presenceOfID.waitingForID("375814").click();
-        presenceOfID.waitingForID("react-select-56--value").click();
-        presenceOfID.waitingForID("188657").click();
+        utils.waitingForID("react-select-56--value").click();
+        utils.waitingForID("375814").click();
+        utils.waitingForID("react-select-56--value").click();
+        utils.waitingForID("188657").click();
         //Нажатие кнопки "Создать".
-        presenceOfID.waitingForID("route-submit").click();
+        utils.waitingForID("route-submit").click();
         //Отображается уведомление: "Данные успешно сохранены".
 
         //Наличие текста: "Время выполнения задания для ОДХ должно составлять не более 5 часов"
@@ -85,8 +82,9 @@ public class CreateAdditionalMission {
         List<String> allErrors1 = LessThan5hours.getAllErrorsTextListed();
 
         if (!allErrors.contains("Время выполнения задания для ОДХ должно составлять не более 5 часов")) {
-            presenceOfID.waitingForID("date_end_input").click();
-            presenceOfID.waitingForID("date_end_input").clear();
+            Thread.sleep(2000);
+            utils.waitingForID("date_end_input").click();
+            utils.waitingForID("date_end_input").clear();
             if (!driver.findElement(By.id("date_end_input")).getAttribute("value").isEmpty()) ;
             String dateStartInput = driver.findElement(By.id("date-start_input")).getAttribute("value");
             if (dateStartInput.isEmpty())
@@ -102,9 +100,9 @@ public class CreateAdditionalMission {
             } catch (Exception e) {
                 System.out.println("Не увижу этот текст");
             }
-            presenceOfID.waitingForID("date_end_input").sendKeys(dateStartInput);
-            presenceOfID.waitingForID("m-submit").click();
-            presenceOfID.waitingForID("waybill-submit").click();
+            utils.waitingForID("date_end_input").sendKeys(dateStartInput);
+            utils.waitingForID("m-submit").click();
+            utils.waitingForID("waybill-submit").click();
 
         }
     }
