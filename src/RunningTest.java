@@ -44,7 +44,7 @@ public class RunningTest {
 //    @Test(description = "Вход в систему")
 //    public void waybillCD() throws Exception {
         Login Enter = new Login();
-        Enter.User(driver, "", "");
+        Enter.User(driver, "123", "");
   }
 
     @Test(description = "Создание ПЛ через реестр Журнал путевых листов")
